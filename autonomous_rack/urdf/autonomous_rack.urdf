@@ -1,0 +1,1410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="autonomous_rack" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0283551818727832 -0.163593352692708 0.604651524742163"
+        rpy="0 0 0" />
+      <mass
+        value="40.0" />
+      <inertia
+        ixx="1.373135779"
+        ixy="-1.13106383657229E-7"
+        ixz="-1.848E-5"
+        iyx="-1.14E-7"
+        iyy="1.551251302"
+        iyz="3.7178E-5"
+        izx="-1.848E-5"
+        izy="3.7178E-5"
+        izz="1.928043355" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <xacro:macro name="stand">
+    <inertial>
+      <origin
+        xyz="0 0.8049706 0"
+        rpy="1.5707 1.5707 0" />
+      <mass
+        value="1.44871592519749" />
+      <inertia
+        ixx="0.314638661"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="0.00020562"
+        iyz="0.0"
+        izz="3.146388661" />
+    </inertial>
+  </xacro:macro>
+
+  <link
+    name="rack_stand_1">
+    <xacro:stand/>  
+    <visual>
+      <origin
+        xyz="0 0 0.1"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/rack_stand_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.1"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/rack_stand_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="rack_stand_1_to_base_link_joint"
+    type="fixed">
+    <origin
+      xyz="0.32998 -1.1952 -0.1"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rack_stand_1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <xacro:macro name="caster">
+    <inertial>
+      <origin
+        xyz="-0.012995 0.0576893 -0.0158765"
+        rpy="0 0 0" />
+      <mass
+        value="0.4099954" />
+      <inertia
+        ixx="0.000485319"
+        ixy="1.93E-07"
+        ixz="1.9E-08"
+        iyx="1.93E-07"
+        iyy="6.48334E-04"
+        iyz="1.17E-09"
+        izz="8.55695E-04" />
+    </inertial>
+  </xacro:macro>
+  
+  <link
+    name="nexel_caster_1">
+    <xacro:caster/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/nexel_caster_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/nexel_caster_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="nexel_caster_1_to_rack_stand_1_joint"
+    type="continuous">
+    <origin
+      xyz="0 0 -0.045"
+      rpy="0 0 0" />
+    <parent
+      link="rack_stand_1" />
+    <child
+      link="nexel_caster_1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <xacro:macro name="castor_wheel">
+    <inertial>
+      <origin
+        xyz="0 0 0 "
+        rpy="0 0 0" />
+      <mass
+        value="0.6" />
+      <inertia
+        ixx="7.3787134E-04"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="7.3787134E-04"
+        iyz="-1.45E-09"
+        izy="-1.45E-09"
+        izz="1.376999E-03" />
+    </inertial>
+  </xacro:macro>
+
+  <link
+    name="castor_wheel_1">
+    <xacro:castor_wheel/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/castor_wheel_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/castor_wheel_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="castor_wheel_1_to_caster_1_joint"
+    type="continuous">
+    <origin
+      xyz="0.04445 0 -0.088333"
+      rpy="-1.5707 0 0" />
+    <parent
+      link="nexel_caster_1" />
+    <child
+      link="castor_wheel_1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link
+    name="rack_stand_2">
+    <xacro:stand/> 
+    <visual>
+      <origin
+        xyz="0 0 0.1"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/rack_stand_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.1"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/rack_stand_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint
+    name="rack_stand_2_to_base_link_joint"
+    type="fixed">
+    <origin
+      xyz="-0.27327 -1.1952 -0.1"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rack_stand_2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="nexel_caster_2">
+    <xacro:caster/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/nexel_caster_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/nexel_caster_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="nexel_caster_2_to_rack_stand_2_joint"
+    type="continuous">
+    <origin
+      xyz="0 0 -0.045"
+      rpy="0 0 0" />
+    <parent
+      link="rack_stand_2" />
+    <child
+      link="nexel_caster_2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link
+    name="castor_wheel_2">
+    <xacro:castor_wheel/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/castor_wheel_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/castor_wheel_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="castor_wheel_2_to_caster_2"
+    type="continuous">
+    <origin
+      xyz="0.04445 0 -0.088333"
+      rpy="-1.5707 0 0" />
+    <parent
+      link="nexel_caster_2" />
+    <child
+      link="castor_wheel_2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link
+    name="rack_stand_3">
+    <xacro:stand/>
+    <visual>
+      <origin
+        xyz="0 0 0.1"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/rack_stand_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.1"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/rack_stand_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="rack_stand_3_to_base_link_joint"
+    type="fixed">
+    <origin
+      xyz="-0.2737 -0.014141 -0.1"
+      rpy="0 0 0 " />
+    <parent
+      link="base_link" />
+    <child
+      link="rack_stand_3" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="nexel_caster_3">
+    <xacro:caster/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/nexel_caster_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/nexel_caster_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="nexel_caster_3_to_rack_stand_3_joint"
+    type="continuous">
+    <origin
+      xyz="0 0 -0.045"
+      rpy="0 0 0" />
+    <parent
+      link="rack_stand_3" />
+    <child
+      link="nexel_caster_3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link
+    name="castor_wheel_3">
+    <xacro:castor_wheel/>
+    <visual>
+      <origin
+        xyz="0.045 0.035 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/castor_wheel_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/castor_wheel_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="castor_wheel_3_to_caster_3_joint"
+    type="continuous">
+    <origin
+      xyz="0.04445 0 -0.088333"
+      rpy="-1.5707 0 0" />
+    <parent
+      link="nexel_caster_3" />
+    <child
+      link="castor_wheel_3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link
+    name="rack_stand_4">
+    <xacro:stand/>
+    <visual>
+      <origin
+        xyz="0 0 0.1"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/rack_stand_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/rack_stand_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="rack_stand_4_to_base_link_joint"
+    type="fixed">
+    <origin
+      xyz="0.32998 -0.014141 -0.1"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rack_stand_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="nexel_caster_4">
+    <xacro:caster/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/nexel_caster_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/nexel_caster_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="nexel_caster_4_to_rack_stand_4_joint"
+    type="continuous">
+    <origin
+      xyz="0 0 -0.045"
+      rpy="0 0 0" />
+    <parent
+      link="rack_stand_4" />
+    <child
+      link="nexel_caster_4" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link
+    name="castor_wheel_4">
+    <xacro:castor_wheel/>
+    <visual>
+      <origin
+        xyz="0.019 -0.055 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/castor_wheel_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/castor_wheel_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="castor_wheel_4_to_caster_4_joint"
+    type="continuous">
+    <origin
+      xyz="0.04445 0 -0.088333"
+      rpy="-1.5707 0 0" />
+    <parent
+      link="nexel_caster_4" />
+    <child
+      link="castor_wheel_4" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <xacro:macro name="motor_holder">
+    <inertial>
+      <origin
+        xyz="-0.00565112823978797 0.00957714354159434 0.0"
+        rpy="0 0 0" />
+      <mass
+        value="0.2" />
+      <inertia
+        ixx="1.04345E-04"
+        ixy="1.514E-08"
+        ixz="3.3855E-05"
+        iyx="1.514E-08"
+        iyy="2.42327E-04"
+        iyz="-7.0E-11"
+        izx="3.3855E-05"
+        izy="-7.0E-11"
+        izz="2.87331E-04" />
+    </inertial>
+  </xacro:macro>
+
+  <link
+    name="motor_holder_1">
+    <xacro:motor_holder/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707 0 3.1415" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_holder_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.101960784313725 0.101960784313725 0.101960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_holder_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="motor_holder_1_to_base_link_joint"
+    type="fixed">
+    <origin
+      xyz="0.52636 -1.4367 -0.24729"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="motor_holder_1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <xacro:macro name="motor">
+    <inertial>
+      <origin
+        xyz="0 -0.00018 0.0238"
+        rpy="0 0 0" />
+      <mass
+        value="0.35" />
+      <inertia
+        ixx="8.5296E-05"
+        ixy="0.0"
+        ixz="0.0"
+        iyy="8.4865E-05"
+        iyz="1.667E-06"
+        izy="1.667E-06"
+        izz="5.1289E-05" />
+    </inertial>
+  </xacro:macro>
+
+  <link
+    name="motor_1">
+    <xacro:motor/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="-1.5707 0 3.1415" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.92156862745098 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="motor_1_to motor_holder_1_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5707 0 1.5707" />
+    <parent
+      link="motor_holder_1" />
+    <child
+      link="motor_1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <xacro:macro name="flange">
+    <inertial>
+      <origin
+        xyz="0.0 0.0 0.00765"
+        rpy="0 0 0" />
+      <mass
+        value="0.18496" />
+      <inertia
+        ixx="3.7271E-05"
+        ixy="0.0"
+        ixz="0.0"
+        iyx="0.0"
+        iyy="3.7271E-05"
+        iyz="0.0"
+        izx="0.0"
+        izy="0.0"
+        izz="5.5056E-05" />
+    </inertial>
+  </xacro:macro>
+
+  <link
+    name="flange_1">
+    <xacro:flange/>
+    <visual>
+      <origin
+        xyz="-0.015 -0.0042 -0.0351"
+        rpy="0 3.14159 0.0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/flange_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.913725490196078 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="-0.0167 -0.0074 -0.063"
+        rpy="0 3.14159 0.048" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/flange_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="flange_1_to_motor_1_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.01635 0.041"
+      rpy="0 0 0" />
+    <parent
+      link="motor_1" />
+    <child
+      link="flange_1" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <xacro:macro name="mecanum_wheel">
+    <inertial>
+      <origin
+        xyz="-0.00888 -0.00007 0.12268"
+        rpy="0 0 0" />
+      <mass
+        value="0.97689" />
+      <inertia
+        ixx="1.096472E-03"
+        ixy="0.0"
+        ixz="5.22E-06"
+        iyy="1.096546E-03"
+        iyz="-2.0E-11"
+        izx="5.22E-06"
+        izy="-2.0E-11"
+        izz="1.30173E-03" />
+    </inertial>
+  </xacro:macro>
+
+  <link
+    name="mecanum_wheel_1">
+    <xacro:mecanum_wheel/>
+    <visual>
+      <origin
+        xyz="0.00765 0 -0.102"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/mecanum_wheel_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/mecanum_wheel_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="mecanum_wheel_1_to_flange_1_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.04"
+      rpy="0 0 0" />
+    <parent
+      link="flange_1" />
+    <child
+      link="mecanum_wheel_1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="motor_holder_2">
+    <xacro:motor_holder/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_holder_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.101960784313725 0.101960784313725 0.101960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_holder_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="motor_holder_2_to_base_link_joint"
+    type="fixed">
+    <origin
+      xyz="-0.46964 -1.4367 -0.24729"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="motor_holder_2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="motor_2">
+    <xacro:motor/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="-1.5707 3.1415 3.1415" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.92156862745098 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="motor_2_to_motor_holder_2_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5707 0 1.5707" />
+    <parent
+      link="motor_holder_2" />
+    <child
+      link="motor_2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="flange_2">
+    <xacro:flange/>
+    <visual>
+      <origin
+        xyz="0.1837 -0.181 0.231"
+        rpy="0 0 0.0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/flange_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.913725490196078 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/flange_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="flange_2_to_motor_2_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.01635 -0.041"
+      rpy="0 0 0" />
+    <parent
+      link="motor_2" />
+    <child
+      link="flange_2" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link
+    name="mecanum_wheel_2">
+    <xacro:mecanum_wheel/>
+    <visual>
+      <origin
+        xyz="0.00899 0 -0.142"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/mecanum_wheel_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/mecanum_wheel_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="mecanum_wheel_2_to_flange_2_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 -0.04"
+      rpy="0 0 0" />
+    <parent
+      link="flange_2" />
+    <child
+      link="mecanum_wheel_2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="motor_holder_3">
+    <xacro:motor_holder/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_holder_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.101960784313725 0.101960784313725 0.101960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_holder_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="motor_holder_3_to_base_link_joint"
+    type="fixed">
+    <origin
+      xyz="-0.46964 0.22734 -0.24729"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="motor_holder_3" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="motor_3">
+    <xacro:motor/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.92156862745098 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="motor_3_to_motor_holder_3_joint"
+    type="fixed">
+    <origin
+      xyz="0.04 0.0107 -0.0125"
+      rpy="1.5708 1.5708 0" />
+    <parent
+      link="motor_holder_3" />
+    <child
+      link="motor_3" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="flange_3">
+    <xacro:flange/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/flange_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.913725490196078 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/flange_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="flange_3_to_motor_3_joint"
+    type="continuous">
+    <origin
+      xyz="-0.0125 -0.04 0.0107"
+      rpy="-1.5708 -0.65833 0" />
+    <parent
+      link="motor_3" />
+    <child
+      link="flange_3" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link
+    name="mecanum_wheel_3">
+    <xacro:mecanum_wheel/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/mecanum_wheel_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/mecanum_wheel_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="mecanum_wheel_3_to_flange_3_joint"
+    type="fixed">
+    <origin
+      xyz="0.0033414 0.016111 0.04"
+      rpy="3.1416 0 2.0944" />
+    <parent
+      link="flange_3" />
+    <child
+      link="mecanum_wheel_3" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="motor_holder_4">
+    <xacro:motor_holder/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707 0 3.14159" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_holder_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.101960784313725 0.101960784313725 0.101960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_holder_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="motor_holder_4_to_base_link_joint"
+    type="fixed">
+    <origin
+      xyz="0.52636 0.22734 -0.24729"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="motor_holder_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="motor_4">
+    <xacro:motor/>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="-1.5707 0 3.1415" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.92156862745098 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/motor_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="motor_4_to_motor_holder_4_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5707 0 1.5707" />
+    <parent
+      link="motor_holder_4" />
+    <child
+      link="motor_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="flange_4">
+    <xacro:flange/>
+    <visual>
+      <origin
+        xyz="0.00384 0.0035 -0.0351"
+        rpy="0 3.14159 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/flange_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.913725490196078 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/flange_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="flange_4_to_motor_4_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.01635 0.041"
+      rpy="0 0 0" />
+    <parent
+      link="motor_4" />
+    <child
+      link="flange_4" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link
+    name="mecanum_wheel_4">
+    <xacro:mecanum_wheel/>
+    <visual>
+      <origin
+        xyz="0.00765 0 -0.102"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/mecanum_wheel_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/mecanum_wheel_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="mecanum_wheel_4_to_flange_4_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0.04"
+      rpy="0 0 0" />
+    <parent
+      link="flange_4" />
+    <child
+      link="mecanum_wheel_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <link
+    name="rack_body">
+    <inertial>
+      <origin
+        xyz="-0.301636157801181 -0.63721581932913 -0.588693118570037"
+        rpy="0 0 0" />
+      <mass
+        value="6.08971276820762" />
+      <inertia
+        ixx="0.349866463537315"
+        ixy="2.14347954984646E-06"
+        ixz="1.70074088422068E-05"
+        iyy="0.546228256491894"
+        iyz="-5.48304462997996E-06"
+        izz="0.197239520718305" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/rack_body.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://autonomous_rack/meshes/rack_body.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rack_body_to_base_link_joint"
+    type="fixed">
+    <origin
+      xyz="0.32998 -1.1952 1.4331"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rack_body" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
